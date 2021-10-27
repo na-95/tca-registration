@@ -1,0 +1,124 @@
+<br>
+<div class="container">
+    <div [ngSwitch]="step" class="card p-5">
+        <!-- <img src="assets/illustrations/group-of-happy-business-people.svg">
+        <img src="assets/illustrations/student-time-management.svg">
+        <img src="assets/illustrations/students-studying-physics-in-classroom-2140100-0.svg"> -->
+
+        <header>
+            <div class="logo-container">
+                <img src="https://nausheralam.com/wp-content/uploads/2021/03/nausher_LOGO_FINAL-06-scaled.jpg">
+            </div>
+            <h1>Welcome to Physics with Nausher</h1>
+        </header>
+        <br>
+
+        <!-- <p>
+            Please complete the sign up process br0. This will create your account with us and you would then be able to
+            sign in to the app. which you download from the app store. Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Commodi animi cupiditate molestias tempora molestiae itaque at unde perspiciatis odio!
+            Commodi repellat nemo minima ad numquam nam! Blanditiis, reiciendis. Culpa, modi.
+        </p> -->
+        <!-- <br> -->
+
+        <ng-template [ngSwitchCase]="1">
+            <h6>Sign up with us:</h6>
+            <br>
+            <div>
+                <img class="google-btn" src="assets\img\google\btn_google_signin_dark_normal_web@2x.png" type="submit"
+                    (click)="googleSignIn()">
+            </div>
+        </ng-template>
+
+
+        <ng-template [ngSwitchCase]="2">
+            <div class="form-container fade-in">
+                <h6>Fill out your personal details:</h6>
+                <br>
+                <form [formGroup]="form" (ngSubmit)="registerUser()">
+
+                    <label>Name:</label>
+                    <input type="text" [readOnly]="true" formControlName="fullName" class="form-control">
+                    <br>
+
+                    <label>Email:</label>
+                    <input type="email" [readOnly]="true" formControlName="email" class="form-control">
+                    <br>
+
+                    <label>Grade:
+                        <!-- <span class="text-danger">*</span> -->
+                    </label>
+                    <select formControlName="grade" class="form-control">
+                        <option value="">Select grade</option>
+                        <option *ngFor="let grade of grades">{{grade}}</option>
+                    </select>
+                    <!-- <ng-container *ngIf="form.controls['title'].hasError('maxlength')">
+                            <small class="text-danger">title length must be less than 65 characters.</small>
+                        </ng-container> -->
+                    <br>
+
+                    <label>Phone number:</label>
+                    <input type="text" formControlName="phoneNumber" class="form-control">
+                    <small *ngIf="form.controls.phoneNumber.touched && form.controls.phoneNumber.errors"
+                        class="text-danger">Phone number is required.</small>
+                    <br>
+
+                    <input type="checkbox" (change)="setWhatsappNumber($event)"> Use same number for WhatsApp.
+                    <br>
+                    <br>
+
+                    <label>WhatsApp number:</label>
+                    <input [readOnly]="useSameNumber" type="text" formControlName="whatsappNumber" class="form-control">
+                    <small *ngIf="form.controls.whatsappNumber.touched && form.controls.whatsappNumber.errors"
+                        class="text-danger">Whatsapp number is required.</small>
+                    <br>
+
+                    <label>Country:
+                        <!-- <span class="text-danger">*</span> -->
+                    </label>
+                    <select formControlName="country" class="form-control">
+                        <option value="">Select country</option>
+                        <option *ngFor="let country of countries">{{country}}</option>
+                    </select>
+                    <!-- <ng-container *ngIf="form.controls['title'].hasError('maxlength')">
+                            <small class="text-danger">title length must be less than 65 characters.</small>
+                        </ng-container> -->
+                    <br>
+
+                    <div>
+                        <button class="btn btn-dark btn-block" [disabled]="!form.valid || !form.dirty " type="submit">
+                            Register
+                        </button>
+                    </div>
+                    {{form.value | json}}
+
+                </form>
+            </div>
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="3">
+            <div class="fade-in">
+                <h6>
+                    Thank you for registering and Welcome aboard! Download the app where Sir Nausher awaits you.
+                </h6>
+                <img class="illustration"
+                    src="assets/illustrations/students-studying-physics-in-classroom-2140100-0.svg">
+            </div>
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="4">
+            <div class="fade-in">
+                <h6>
+                    You have already registered with Physics With Nausher. Please download the app from your respective
+                    store.
+                </h6>
+                <img class="illustration"
+                    src="assets/illustrations/students-studying-physics-in-classroom-2140100-0.svg">
+
+            </div>
+        </ng-template>
+
+
+    </div>
+</div>
+<ngx-ui-loader></ngx-ui-loader>
